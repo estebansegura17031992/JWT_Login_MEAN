@@ -1,0 +1,16 @@
+#login-cart-div{
+	margin-left: 500px;
+	max-width: 220px;
+	margin-top: 100px;
+	border: solid 2px #000;
+	padding: 20px 20px 60px 20px;
+	background-color: #c1c1c1;
+}
+
+.login-input{
+	margin-bottom: 10px;
+}
+
+#btn-login{
+	float: right;
+}
