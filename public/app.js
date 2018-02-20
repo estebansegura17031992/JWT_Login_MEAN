@@ -9,7 +9,11 @@ login_mean.config(['$routeProvider','$locationProvider',function($routeProvider,
 		.when("/login",{
 			templateUrl: 'partials/login.html',
 			controller: 'LoginCtrl'
-		});
+		})
+		.when("/register",{
+			templateUrl:'partials/register.html',
+			controller: 'RegisterCtrl'
+		})
 
 	$locationProvider.html5Mode(false).hashPrefix("!");
 }])

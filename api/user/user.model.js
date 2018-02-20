@@ -21,7 +21,8 @@ var UserSchema = new Schema({
 	},
 	admin: {
 		type: Boolean,
-		require: true
+		require: true,
+		default: false
 	},
 	date: {
 		type: Date,

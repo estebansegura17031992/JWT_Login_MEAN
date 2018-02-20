@@ -5,6 +5,12 @@
 	    <span aria-hidden="true">&times;</span>
 	  </button>
 	</div>
+	<div class="alert alert-success alert-dismissible" role="alert" ng-show="registerComplete">
+	  Succesfully Register
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
 	<div class="alert alert-danger alert-dismissible" role="alert" ng-show="loginError">
 	  User or Password Incorrect. Try Again
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -13,15 +19,18 @@
 	</div>
 	<div id="login-cart-div">
 	    <form ng-submit="login()">
-	    	<div class="login-input">
-				<label for="email">Email</label>
-				<input type="text" name="email" ng-model="email">
+	    	<div class="login-input form-group">
+				<label for="email" class="form-label">Email</label>
+				<input type="text" name="email" ng-model="email" class="form-control">
 			</div>
-			<div class="login-input">
-				<label for="password">Password</label>
-				<input type="password" name="password" ng-model="password">
+			<div class="login-input form-group">
+				<label for="password" class="form-label">Password</label>
+				<input type="password" name="password" ng-model="password" class="form-control">
 			</div>
-			<button id="btn-login" class="btn btn-primary" type="submit" ng-click="login">Login</button>
+			<button class="btn btn-success btn-login" type="submit" ng-click="login">Login</button>
 		</form>
+	</div>
+	<div id="div-register">
+		Don't you have an account?... <a  href="#!/register">Register</a>
 	</div>
 </div>

@@ -1,6 +1,6 @@
 #login-cart-div{
-	margin-left: 500px;
-	max-width: 220px;
+	margin-left: 420px;
+	max-width: 280px;
 	margin-top: 100px;
 	border: solid 2px #000;
 	padding: 20px 20px 60px 20px;
@@ -11,6 +11,26 @@
 	margin-bottom: 10px;
 }
 
-#btn-login{
+.btn-login{
 	float: right;
+}
+
+#div-register{
+	margin-left: 420px;
+}
+
+.btn-register{
+	min-width: 100px;
+	float: right;
+}
+
+#btn-register{
+	margin-right: 10px;
+}
+
+#register-container{
+	max-width: 500px !important;
+	border: solid 2px #000;
+	padding-bottom: 20px;
+	background-color: #c1c1c1;
 }

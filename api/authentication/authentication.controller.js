@@ -1,7 +1,8 @@
 'use strict'
 var User = require('../user/user.model')
 var jwt = require('jsonwebtoken');
-var config = require('../../config')
+var config = require('../../config');
+var bcrypt = require('bcrypt');
 /*
 Verify if the Json Web Token exist
 */
@@ -29,8 +30,6 @@ function authentication(req,res,next){
 }
 
 function login(req,res,next){
-	console.log("---> ");
-	console.log(req.body.email);
 	// find the user
 	User.findOne({email: req.body.email}, function(err, user) {
 
@@ -39,9 +38,8 @@ function login(req,res,next){
 		if (!user) {
 		  res.json({ success: false, message: 'Authentication failed. User not found.' });
 		} else if (user) {
-			console.log("user"+user)
 			// check if password matches
-			if (user.password != req.body.password) {
+			if (!user.comparePassword(req.body.password)) {
 				res.json({ success: false, message: 'Authentication failed. Wrong password.' });
 			} else {
 				// if user is found and password is right create a token with only our given payload
@@ -51,7 +49,6 @@ function login(req,res,next){
 				};
 
 			    var token = jwt.sign(payload, config.secret);
-			    console.log(token)
 			    req.session.token = token;
 			    return res.json({success: true, message: 'Authentication complete'});
 		  	}   
@@ -59,9 +56,24 @@ function login(req,res,next){
 	});
 }
 
+function register(req,res,next){
+	var newUser = new User(req.body);
+  	newUser.password = bcrypt.hashSync(req.body.password, 10);
+  	newUser.save(function(err, user) {
+    	if (err) {
+      		return res.status(400).send({success: false,message: err});
+    	} else {
+      		user.password = undefined;
+      		return res.json({success: true,user:user});
+    	}
+  	});
+
+}
+
 var controller = {
 	authentication:authentication,
-	login: login
+	login: login,
+	register: register
 }
 
 module.exports = controller

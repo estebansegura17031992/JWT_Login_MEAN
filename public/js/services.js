@@ -7,3 +7,11 @@ appServices.factory('Login',['$resource',
 		})
 	}
 ])
+
+appServices.factory("Register",['$resource',
+	function($resource){
+		return $resource('api/authentication/register',{},{
+			register: {method: 'POST', cache:false, isArray: false}
+		})
+	}
+])
