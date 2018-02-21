@@ -3,7 +3,7 @@ var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
-var cookieSession = require('cookie-session');
+var session = require('cookie-session');
 var morgan = require('morgan');
 
 
@@ -11,9 +11,11 @@ var config = require('./config');
 
 app.use(express.static(__dirname + '/public'));
 
-app.use(cookieSession({
-	name: "session",
-	keys: ["token"]
+app.use(session({
+	resave: false,
+	saveUninitialized: false,
+	secret: config.secret,
+	httpOnly:false
 }));
 
 //MORGAN USE FOR SEE BEAUTY REQUEST FOR THE SERVER

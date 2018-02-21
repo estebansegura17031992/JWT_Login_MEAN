@@ -1,7 +1,8 @@
-appController = angular.module('appController',['appServices','appBusinessServices']);
+appController = angular.module('appController',['appServices','appBusinessServices','ngCookies']);
 
 appController.controller('IndexCtrl',['$scope','$location','checkCreds',
 	function IndexCtrl($scope,$location,checkCreds){
+		console.log(checkCreds());
 		if (checkCreds()) {
 			$scope.message = "Welcome to the application"
 		} else {
@@ -10,13 +11,13 @@ appController.controller('IndexCtrl',['$scope','$location','checkCreds',
 	}
 ]);
 
-appController.controller('LoginCtrl',['$scope','$routeParams','Login',
-	function LoginCtrl($scope,$routeParams,Login){
+appController.controller('LoginCtrl',['$scope','$routeParams','$location','$cookies','Login',
+	function LoginCtrl($scope,$routeParams,$location,$cookies,Login){
 		$scope.loginComplete = false;
 		$scope.loginError = false;
 		$scope.registerComplete = false;
 
-		if($routeParams.register=true){
+		if($routeParams.register==true){
 			$scope.registerComplete = true;
 		}
 
@@ -26,8 +27,10 @@ appController.controller('LoginCtrl',['$scope','$routeParams','Login',
 				'password':$scope.password
 			};
 			Login.login({},postData,function success(response){
-				if(response.success)
+				if(response.success){
 					$scope.loginComplete = true;
+					$location.path('/');
+				}
 				else 
 					$scope.loginError = true;
 			},function error(errorResponse){

@@ -50,7 +50,7 @@ function login(req,res,next){
 
 			    var token = jwt.sign(payload, config.secret);
 			    req.session.token = token;
-			    return res.json({success: true, message: 'Authentication complete'});
+			    return res.json({success: true, message: 'Authentication complete',token:token});
 		  	}   
 		}
 	});
