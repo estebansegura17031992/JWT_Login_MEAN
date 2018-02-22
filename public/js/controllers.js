@@ -1,10 +1,15 @@
 appController = angular.module('appController',['appServices','appBusinessServices','ngCookies']);
 
-appController.controller('IndexCtrl',['$scope','$location','checkCreds',
-	function IndexCtrl($scope,$location,checkCreds){
+appController.controller('IndexCtrl',['$scope','$location','checkCreds','InfoUser',
+	function IndexCtrl($scope,$location,checkCreds,InfoUser){
 		console.log(checkCreds());
 		if (checkCreds()) {
-			$scope.message = "Welcome to the application"
+			InfoUser.infoUser({},function success(response){
+				$scope.message = "Welcome to the application "+response.username;
+			},function error(errorResponse){
+				$scope.message = errorResponse;
+			})
+			
 		} else {
 			$location.path("/login")
 		}

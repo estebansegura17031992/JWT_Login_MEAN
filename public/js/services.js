@@ -14,4 +14,12 @@ appServices.factory("Register",['$resource',
 			register: {method: 'POST', cache:false, isArray: false}
 		})
 	}
+]);
+
+appServices.factory("InfoUser",['$resource',
+	function($resource){
+		return $resource('api/user/infoUser',{},{
+			infoUser: {method: 'GET',cache:false,isArray:false}
+		})
+	}
 ])
