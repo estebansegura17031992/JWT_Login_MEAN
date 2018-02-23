@@ -2,7 +2,6 @@ appController = angular.module('appController',['appServices','appBusinessServic
 
 appController.controller('IndexCtrl',['$scope','$location','checkCreds','InfoUser',
 	function IndexCtrl($scope,$location,checkCreds,InfoUser){
-		console.log(checkCreds());
 		if (checkCreds()) {
 			InfoUser.infoUser({},function success(response){
 				$scope.message = "Welcome to the application "+response.username;
