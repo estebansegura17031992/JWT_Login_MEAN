@@ -1,7 +1,7 @@
-var app_business_servicess = angular.module('appBusinessServices',['ngCookies']);
+var appBusinessServices = angular.module('appBusinessServices',['ngCookies']);
 
-app_business_servicess.factory('checkCreds',['$cookies','$cookieStore',
-	function($cookies,$cookieStore){
+appBusinessServices.factory('checkCreds',['$cookies',
+	function($cookies){
 		return function(){
 			var returnVal = false;
 	        var appCreds = $cookies.get("session");
@@ -11,5 +11,6 @@ app_business_servicess.factory('checkCreds',['$cookies','$cookieStore',
 	        return returnVal;
 		}
 	}
-])
+]);
+
 

@@ -28,7 +28,7 @@ app.use('/api', expressJwt({
 	getToken: function fromCookie (req) {
 	    var token = req.session.token;
 	    if (token) {
-	      return token;
+	      	return token;
 	    } 
     return null; 
 	}
