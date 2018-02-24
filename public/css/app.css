@@ -19,12 +19,12 @@
 	margin-left: 420px;
 }
 
-.btn-register{
+.btn-register,.btn-edit{
 	min-width: 100px;
 	float: right;
 }
 
-#btn-register{
+#btn-register,#btn-edit{
 	margin-right: 10px;
 }
 

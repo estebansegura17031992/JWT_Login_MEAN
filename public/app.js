@@ -14,6 +14,10 @@ login_mean.config(['$routeProvider','$locationProvider',function($routeProvider,
 			templateUrl:'partials/register.html',
 			controller: 'RegisterCtrl'
 		})
+		.when("/edit/:id",{
+			templateUrl: 'partials/editUser.html',
+			controller: 'EditUserCtrl'
+		})
 
 	$locationProvider.html5Mode(false).hashPrefix("!");
 }])

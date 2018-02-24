@@ -16,9 +16,7 @@ function authentication(req,res,next){
 		jwt.verify(token, config.secret, function(err, decoded) {      
 		 	if (err) {
 		    	return res.json({ success: false, message: 'Failed to authenticate token.' });    
-		  	} else {
-		    	// if everything is good, save to request for use in other routes
-		    	req.decoded = decoded;      
+		  	} else {      
 		    	next();
 		  	}
 		});
@@ -50,7 +48,7 @@ function login(req,res,next){
 
 			    var token = jwt.sign(payload, config.secret);
 			    req.session.token = token;
-			    return res.json({success: true, message: 'Authentication complete'});
+			    return res.json({success: true, message: 'Authentication complete',token:token});
 		  	}   
 		}
 	});
