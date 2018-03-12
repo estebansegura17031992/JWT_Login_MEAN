@@ -48,7 +48,7 @@ function login(req,res,next){
 
 			    var token = jwt.sign(payload, config.secret);
 			    req.session.token = token;
-			    return res.json({success: true, message: 'Authentication complete',token:token});
+			    return res.status(200).send({success: true, message: 'Authentication complete',token:token});
 		  	}   
 		}
 	});
@@ -62,7 +62,7 @@ function register(req,res,next){
       		return res.status(400).send({success: false,message: err});
     	} else {
       		user.password = undefined;
-      		return res.json({success: true,user:user});
+      		return res.status(200).send({success: true,user:user});
     	}
   	});
 
