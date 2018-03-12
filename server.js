@@ -20,7 +20,10 @@ app.use(session({
 }));
 
 //MORGAN USE FOR SEE BEAUTY REQUEST FOR THE SERVER
-app.use(morgan('dev'));
+if(process.env.NODE_ENV!=='production'){
+	var morgan = require('morgan');
+	app.use(morgan('dev'));
+}
 
 // use JWT auth to secure the api
 app.use('/api', expressJwt({ 
