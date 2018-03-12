@@ -5,8 +5,6 @@ var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var session = require('cookie-session');
-var morgan = require('morgan');
-
 
 var config = require('./config');
 
