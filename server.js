@@ -17,10 +17,15 @@ app.use(session({
 	httpOnly:false
 }));
 
-//MORGAN USE FOR SEE BEAUTY REQUEST FOR THE SERVER
+
 if(process.env.NODE_ENV!=='production'){
+	//MORGAN USE FOR SEE BEAUTY REQUEST FOR THE SERVER
 	var morgan = require('morgan');
 	app.use(morgan('dev'));
+
+	mongoose.connect(config.database); 
+} else {
+	mongoose.connect(config.databaseProd); 
 }
 
 // use JWT auth to secure the api
@@ -41,11 +46,10 @@ app.use(bodyParser.json());
 
 //CONFIGURE OUR APPLICATION
 var port = process.env.PORT || 3000; 
-mongoose.connect(config.database); 
 
 app.use('/api/authentication', require('./api/authentication/authentication.routes'));
 app.use('/api/user', require('./api/user/user.routes'));
 
 app.listen(port,function(){
-	console.log("Application running in port: "+port);
+	console.log(process.env);
 })
